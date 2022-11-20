@@ -1,3 +1,4 @@
+const plugin = require('tailwindcss/plugin')
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -5,11 +6,7 @@ module.exports = {
   ],
   theme: {
     extend: {},
-    boxShadow: {
-      shadow: '0 0 0 2px #00000014'
-    }
   },
-  important: true,
   plugins: [],
   corePlugins: {
     preflight: false,

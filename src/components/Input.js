@@ -1,44 +1,73 @@
 import React, { forwardRef, useEffect, useState } from 'react';
-import './Input.css';
 
-const Input = forwardRef(function Input({ name, label, pattern, value, style, onChange, className, required, styleOnError, labelStyle, labelStyleError, ...other }, ref) {
+/* 
+    Here forwardRef is used for handling the ref prop. 
+    This Input component returns conditionaly for label prop if passed returns div > input, label and label not passed returns div > input
+    
+*/
+const Input = forwardRef(function Input(
+    {
+        name,
+        label,
+        pattern,
+        value,
+        style,
+        onChange,
+        className,
+        required,
+        styleOnError,
+        labelStyle,
+        labelStyleError,
+        ...other
+    },
+    ref
+) {
+    // State below is used for making the inputs react controlled components
     const [inputValue, setInputValue] = useState(value || '');
+    // state below is boolean for indicating if value is matched the pattern prop then retruns true or else invalid
     const [inValid, setInValid] = useState(false);
+    // here if label is passed then placeholder is set to empty
     if (label) {
-        other.placeholder = ''
+        other.placeholder = '';
     }
+    // this is for running onChange method added by props with the onChange in input elements already available
     function onInputChange(e) {
         if (typeof onChange === 'function') {
-            onChange(e)
+            onChange(e);
         }
         let val = e.target.value;
         setInputValue(val);
     }
+    // this change styles of elements conditionally on inValid state and style from props are added to it too.
     if (inValid) {
-        style = {...style, ...styleOnError}
-        labelStyle = {...labelStyle, ...labelStyleError}
-    }else {
-        style = {...style}
-        labelStyle = {...labelStyle}
+        style = { ...style, ...styleOnError };
+        labelStyle = { ...labelStyle, ...labelStyleError };
+    } else {
+        style = { ...style };
+        labelStyle = { ...labelStyle };
     }
+    // useEffect below states inValid for required prop passed
     useEffect(() => {
         if (required && !inputValue) {
-            setInValid(true)
+            setInValid(true);
         } else {
-            setInValid(false)
+            setInValid(false);
         }
-    }, [inputValue, required])
-
+    }, [inputValue, required]);
+    // useEffect below states inValid for pattern prop pa
     useEffect(() => {
         if (pattern && inputValue) {
             try {
-                if (inputValue.match(pattern)[0] !== inputValue.match(pattern).input) {
-                    setInValid(true)
+                if (
+                    inputValue.match(pattern)[0] !==
+                    inputValue.match(pattern).input
+                ) {
+                    setInValid(true);
                 } else {
-                    setInValid(false)
-                }  
+                    setInValid(false);
+                }
             } catch (error) {
-                setInValid(true)
+                setInValid(true);
             }
         }
     }, [inputValue, pattern]);
@@ -48,7 +77,9 @@ const Input = forwardRef(function Input({ name, label, pattern, value, style, on
                 <div className={`wrapper p-0`} style={{ padding: '0' }}>
                     <input
                         value={inputValue}
-                        className={`${inValid ? 'wrong' : ''} auto ${className}`}
+                        className={`${
+                            inValid ? 'wrong' : ''
+                        } auto ${className}`}
                         style={style}
                         onChange={onInputChange}
                         pattern={'[A-Za-z]+'}
@@ -62,7 +93,9 @@ const Input = forwardRef(function Input({ name, label, pattern, value, style, on
                 <div className={`wrapper `}>
                     <input
                         value={inputValue}
-                        className={`${inValid ? 'wrong' : ''} auto ${className}`}
+                        className={`${
+                            inValid ? 'wrong' : ''
+                        } auto ${className}`}
                         style={style}
                         onChange={(e) => onInputChange(e)}
                         pattern={'[A-Za-z]+'}
@@ -70,11 +103,17 @@ const Input = forwardRef(function Input({ name, label, pattern, value, style, on
                         name={name}
                         {...other}
                     />
-                    <label style={labelStyle} className={`${inValid ? 'wrong_label' : ''} label ${inputValue ? 'label_value' : ''}`}>{label}</label>
+                    <label
+                        style={labelStyle}
+                        className={`${inValid ? `wrong_label` : ''} label ${
+                            inputValue ? 'label_value' : ''
+                        }`}>
+                        {label}
+                    </label>
                 </div>
             )}
         </React.Fragment>
     );
-})
+});
 
 export default Input;
