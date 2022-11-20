@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @layer components {
-    .auto {
+    .default-style {
         padding: 4px 8px;
         border: 1px solid #00000014;
         font-size: 14px;
@@ -15,11 +15,10 @@
         text-overflow: ellipsis;
         border-radius: 4px;
         outline: none;
-        width: 100%;
         box-sizing: border-box;
     }
     
-    .auto:focus {
+    .default-style:focus {
         outline-offset: 0px;
         border: 1px solid #00000029;
         box-shadow: 0 0 0 2px #00000014;
@@ -40,7 +39,7 @@
         transform-origin: left center;
         transition: transform 0.2s ease-out, color 0.2s ease-out, top 0.2s ease-out, left 0.2s ease-out;
     }
-    .label_value {
+    .label-value {
         max-width: 90%;
         font-size: 14px;
         line-height: 1.4285714286;
@@ -51,7 +50,7 @@
         font-size: 12px;
         left: 0;
     }
-    .auto:focus ~ .label {
+    .input:focus ~ .label {
         top: 0;
         font-size: 12px;
         left: 0;
@@ -75,7 +74,7 @@
         /* box-shadow: 0 0 2px 1px #e00000; */
         outline: none;
     }
-    .wrong_label {
+    .wrong-label {
         color: #e00000;
     }
 }

@@ -79,7 +79,7 @@ const Input = forwardRef(function Input(
                         value={inputValue}
                         className={`${
                             inValid ? 'wrong' : ''
-                        } auto ${className}`}
+                        } default-style input w-full ${className}`}
                         style={style}
                         onChange={onInputChange}
                         pattern={'[A-Za-z]+'}
@@ -95,7 +95,7 @@ const Input = forwardRef(function Input(
                         value={inputValue}
                         className={`${
                             inValid ? 'wrong' : ''
-                        } auto ${className}`}
+                        } default-style input w-full ${className}`}
                         style={style}
                         onChange={(e) => onInputChange(e)}
                         pattern={'[A-Za-z]+'}
@@ -105,8 +105,8 @@ const Input = forwardRef(function Input(
                     />
                     <label
                         style={labelStyle}
-                        className={`${inValid ? `wrong_label` : ''} label ${
-                            inputValue ? 'label_value' : ''
+                        className={`${inValid ? `wrong-label` : ''} label ${
+                            inputValue ? 'label-value' : ''
                         }`}>
                         {label}
                     </label>
