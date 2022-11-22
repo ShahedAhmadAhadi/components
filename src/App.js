@@ -13,12 +13,13 @@ function App() {
 
 
   return (
-    <div className="App flex flex-col">
+    <div className="App">
       <Input ref={inp} pattern='[A-Za-z]+' className="style-on-error:bg-red-500" styleOnError={{border: '1px solid green'}} />
       <Input label="name" pattern='[A-Za-z]+' className="text-blue-300 border-cyan-600 focus:border-yellow-500" />
       <br></br>
       <br></br>
       <br></br>
+      <button></button>
       <Button>button</Button>
     </div>
   );

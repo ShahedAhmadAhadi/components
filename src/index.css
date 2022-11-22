@@ -4,6 +4,7 @@
 
 @layer components {
     .default-style {
+        box-sizing: border-box;
         padding: 4px 8px;
         border: 1px solid #00000014;
         font-size: 14px;
@@ -15,7 +16,36 @@
         text-overflow: ellipsis;
         border-radius: 4px;
         outline: none;
+    }
+
+    .default-style-lg{
         box-sizing: border-box;
+        padding: 8px 12px;
+        font-size: 16px;
+        border: 1px solid #00000014;
+        line-height: 1.5;
+        color: #424242;
+        vertical-align: middle;
+        position: relative;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        border-radius: 4px;
+        outline: none;
+    }
+
+    .default-style-sm {
+        box-sizing: border-box;
+        padding: 2px 8px;
+        font-size: 14px;
+        border: 1px solid #00000014;
+        line-height: 1.4285714286;
+        color: #424242;
+        vertical-align: middle;
+        position: relative;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        border-radius: 4px;
+        outline: none;
     }
     
     .default-style:focus {
@@ -23,6 +53,22 @@
         border: 1px solid #00000029;
         box-shadow: 0 0 0 2px #00000014;
         outline: none;
+    }
+
+    .btn {
+        display: inline-flex;
+        cursor: pointer;
+        background-color: #f5f5f5;
+        background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.02));
+    }
+    .btn:hover{
+        filter: brightness(97%);
+    }
+
+    .primary {
+        background-color: #ff6358;
+        border: 1px solid #ff6358;
+        color: white;
     }
     
     .label {

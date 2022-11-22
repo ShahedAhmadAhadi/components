@@ -1,8 +1,11 @@
 import React from 'react'
 
-function Button(props) {
+function Button({size, ...other}) {
   return (
-    <button>{props.children}</button>
+    <button className={`default-style btn primary`} >
+        <span className={``}>{other.children}</span>
+        <span></span>
+    </button>
   )
 }
 
