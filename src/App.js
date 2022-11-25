@@ -19,8 +19,7 @@ function App() {
       <br></br>
       <br></br>
       <br></br>
-      <button></button>
-      <Button>button</Button>
+      <Button size={'small'}>button</Button>
     </div>
   );
 }
