@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import './App.css';
 import Button from './components/Button';
+import DropDownLIst from './components/DropDownLIst';
 import Input from './components/Input';
 
 function App() {
@@ -19,7 +20,11 @@ function App() {
       <br></br>
       <br></br>
       <br></br>
-      <Button size={'small'}>button</Button>
+      <Button fillMode={''} disabled className={''} icon={'bi bi-wallet2'}></Button>
+      <Button fillMode={'flat'} className={''} icon={'bi bi-wallet2'}></Button>
+      <Button fillMode={'outline'} className={''} icon={'bi bi-wallet2'}></Button>
+      <Button fillMode={'link'} className={''} icon={'bi bi-wallet2'}>button</Button>
+      <DropDownLIst></DropDownLIst>
     </div>
   );
 }
