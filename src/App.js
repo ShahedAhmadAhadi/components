@@ -8,7 +8,7 @@ function App() {
   const inp = useRef(null)
 
   useEffect(() => {
-    inp.current.focus()
+    // inp.current.focus()
   }, [])
 
 
