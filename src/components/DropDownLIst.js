@@ -3,7 +3,8 @@ import Button from './Button'
 import Input from './Input'
 
 function DropDownLIst(data, defaultItem, textField, filterable = true) {
-    const [height, setHeight] = useState('0')
+    const [height, setHeight] = useState('hidden')
+    const [value, setValue] = useState(null)
     const inputRef = useRef(null)
     const keyGenerator = () => {
         let randNums = Math.round(Math.random() * 9000 + 999)
@@ -22,35 +23,49 @@ function DropDownLIst(data, defaultItem, textField, filterable = true) {
 
     }
     useEffect(() => {
-
-    //   inputRef.current.focus()
+        if (filterable) {
+            inputRef.current.focus()
+        }
+        console.log(value)
     })
 
     const clickHandler = (e) => {
-        console.log('laifdji')
+        setHeight('flex')
+        if (filterable) {
+            inputRef.current.focus()
+        }
     }
-    
-    const focusHandler = () => {
-        console.log('l')
-        setHeight('h-max')
-    }
-    const blurHandler = () => {
+    const blurHandler = (className) => {
+        if (filterable) {
+            setHeight('flex')
+        }else{
+            setHeight('hidden')
+
+        }
         console.log('first')
-        setHeight('0')
     }
-    // data = [{ item: 'red' }]
-    data = ['blue', 'red']
-    // textField = 'item'
+    const inputBlurHandler = (e) => {
+        console.log('input')
+        e.stopPropagation()
+        setHeight('hidden')
+    }
+    const liClickHandler = (item) => {
+        // setValue()
+        console.log(item)
+    }
+    data = [{ item: 'red', id: 1 }]
+    // data = ['blue', 'red']
+    textField = 'item'
     defaultItem = 'data'
     return (
         <React.Fragment>
-            <div id='drop-down' className=' relative' onClick={clickHandler}>
-                <Button onFocus={focusHandler} onBlur={() => blurHandler()} className={'select'}><span className='select-default-text'>{defaultItem}</span><span className='select-caret'>&#119119;</span>
+            <div id='drop-down' className=' relative' onClick={clickHandler} onBlur={() => blurHandler('hidden')}>
+                <Button className={'select'}><span className='select-default-text'>{defaultItem}</span><span className='select-caret'>&#119119;</span>
                 </Button>
-                <ul className={`option-wrapper ${height}`}>
-                    {filterable && <li className='option-item' key={keyGenerator()}><img className='search-icon' src='search.svg' alt='search-icon' /><Input ref={inputRef} id="search-input" className='filter-input' /></li>}
-                    {textField && data && data.map(item => (<li className='option-item' onClick={clickHandler} key={item.id ? item.id : keyGenerator()}>{item[textField]}</li>))}
-                    {!textField && data && data.map(item => (<li className='option-item' onClick={clickHandler} key={keyGenerator()}>{item}</li>))}
+                <ul className={`option-wrapper ${height} h-max`}>
+                    {filterable && <li className='option-item' key={keyGenerator()}><img className='search-icon' src='search.svg' alt='search-icon' /><Input onBlur={(e) => inputBlurHandler(e)}  ref={inputRef} id="search-input" className='filter-input pl-8' /></li>}
+                    {textField && data && data.map(item => (<li className='option-item' value={item} onClick={() => setValue(item)} key={item.id ? item.id : keyGenerator()}>{item[textField]}</li>))}
+                    {!textField && data && data.map(item => (<li className='option-item' onMouseOver={() => liClickHandler(item)} key={keyGenerator()}>{item}</li>))}
                 </ul>
             </div>
             {/* <select className='default-style select' value={defaultItem} onChange={() => onChangeHandler()}>
