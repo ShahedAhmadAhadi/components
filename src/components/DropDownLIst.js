@@ -1,24 +1,14 @@
 import React, {forwardRef, useEffect, useRef, useState} from 'react'
 import Button from './Button'
 import Input from './Input'
+import ListItem from './ListItem'
 
-function DropDownLIst(data, defaultItem, textField, filterable = true) {
+function DropDownLIst({data, defaultItem, textField, value: propValue, filterable = true}) {
     const [height, setHeight] = useState('hidden')
-    const [value, setValue] = useState(null)
+    const [value, setValue] = useState(propValue)
     const inputRef = useRef(null)
-    const keyGenerator = () => {
-        let randNums = Math.round(Math.random() * 9000 + 999)
-        let key = ['', '-', randNums]
-        const alphaNumGenerator = () => {
-            let randAlpha = Math.ceil(Math.random() * 26)
-            return randAlpha
-        }
-        for (let i = 0; i < 4; i++) {
-            let oneAlphaNum = alphaNumGenerator()
-            key[0] += String.fromCharCode(oneAlphaNum + 64)
-        }
-        return key.join('')
-    }
+    
+    
     const onChangeHandler = () => {
 
     }
@@ -26,7 +16,6 @@ function DropDownLIst(data, defaultItem, textField, filterable = true) {
         if (filterable) {
             inputRef.current.focus()
         }
-        console.log(value)
     })
 
     const clickHandler = (e) => {
@@ -39,33 +28,35 @@ function DropDownLIst(data, defaultItem, textField, filterable = true) {
         if (filterable) {
             setHeight('flex')
         }else{
-            setHeight('hidden')
-
+            setTimeout(() => {
+                setHeight('hidden')
+                
+            }, 100);
         }
-        console.log('first')
     }
     const inputBlurHandler = (e) => {
-        console.log('input')
         e.stopPropagation()
-        setHeight('hidden')
+        setTimeout(() => {
+            setHeight('hidden')
+        }, 100);
     }
     const liClickHandler = (item) => {
         // setValue()
         console.log(item)
     }
-    data = [{ item: 'red', id: 1 }]
-    // data = ['blue', 'red']
-    textField = 'item'
     defaultItem = 'data'
     return (
         <React.Fragment>
-            <div id='drop-down' className=' relative' onClick={clickHandler} onBlur={() => blurHandler('hidden')}>
-                <Button className={'select'}><span className='select-default-text'>{defaultItem}</span><span className='select-caret'>&#119119;</span>
+            <div id='drop-down' className=' relative' onClick={clickHandler}
+             onBlur={() => blurHandler('hidden')}
+             >
+                <Button className={'select'}><span className='select-default-text'>{value ? typeof value == 'string' ? value: value[textField] : defaultItem}</span><span className='select-caret'>&#119119;</span>
                 </Button>
-                <ul className={`option-wrapper ${height} h-max`}>
-                    {filterable && <li className='option-item' key={keyGenerator()}><img className='search-icon' src='search.svg' alt='search-icon' /><Input onBlur={(e) => inputBlurHandler(e)}  ref={inputRef} id="search-input" className='filter-input pl-8' /></li>}
-                    {textField && data && data.map(item => (<li className='option-item' value={item} onClick={() => setValue(item)} key={item.id ? item.id : keyGenerator()}>{item[textField]}</li>))}
-                    {!textField && data && data.map(item => (<li className='option-item' onMouseOver={() => liClickHandler(item)} key={keyGenerator()}>{item}</li>))}
+                <ul onClick={(e) => {e.stopPropagation()}} className={`option-wrapper ${height} h-max`}>
+                    {filterable && <li className='option-item' key={'search-list-items'}><img className='search-icon' src='search.svg' alt='search-icon' /><Input 
+                    onBlur={(e) => inputBlurHandler(e)}
+                      ref={inputRef} id="search-input" className='filter-input pl-8' /></li>}
+                    <ListItem data={data} textField={textField} value={(item) => setValue(item)} />
                 </ul>
             </div>
             {/* <select className='default-style select' value={defaultItem} onChange={() => onChangeHandler()}>
