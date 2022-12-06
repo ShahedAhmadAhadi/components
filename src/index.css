@@ -257,8 +257,7 @@
         box-sizing: border-box;
         height: auto;
         max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.5s;
+        transition: max-height 0.4s linear 100ms;
         position: absolute;
         width: 100%;
         background-color: #fff;
@@ -268,11 +267,24 @@
         border: 1px solid #00000014;
         box-shadow: 1px 1px 2px #e5dede;
         transition: max-height 0.5s;
-        max-height: 200px;
+        max-height: 170px;
     }
     .option-item:hover {
         background-color: #00000014;
         cursor: pointer;
+    }
+    .option-item-empty{
+        height: 130px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .selected{
+        background-color: #ff6358;
+        color: white;
+    }
+    .selected:hover{
+        background-color: #fb564a;
     }
     .filter-input {
         width: 100%;
