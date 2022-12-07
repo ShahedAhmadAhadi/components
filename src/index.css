@@ -69,17 +69,6 @@
     .btn-flat:hover {
         background-color: #00000008;
     }
-    .btn-outline {
-        color: #424242;
-        border: 1px solid currentColor;
-        box-shadow: none;
-        background-color: transparent;
-    }
-    .btn-outline:hover {
-        background-color: #424242;
-        border-color: #424242;
-        color: #ffffff;
-    }
     .btn-link {
         border-color: transparent;
         background: none;
@@ -188,28 +177,19 @@
         width: 100%;
     }
 
-    .wrong {
-        border: 1px solid rgb(224, 0, 0);
-    }
-    .wrong:focus {
-        border: 1px solid #e00000;
-        /* box-shadow: 0 0 2px 1px #e00000; */
-        outline: none;
-    }
     .wrong-label {
         color: #e00000;
     }
     .select {
         border-color: rgba(0, 0, 0, 0.08);
-        color: #424242;
-        background-color: #f5f5f5;
+        /* color: #424242; */
+        /* background-color: #f5f5f5;
         background-image: linear-gradient(
             rgba(0, 0, 0, 0),
             rgba(0, 0, 0, 0.02)
-        );
+        ); */
         cursor: pointer;
         list-style-type: none;
-        padding: 4px 8px;
         font-size: 14px;
         width: 100%;
         min-width: max-content;
@@ -223,10 +203,10 @@
     }
     .select-caret {
         font-size: 25px;
-        color: #424242;
+        color: inherit;
         position: absolute;
         top: -8px;
-        right: 4px;
+        right: 8px;
     }
     /* .select:focus ~ .option-wrapper {
         border: 1px solid #00000014;
@@ -257,7 +237,7 @@
         box-sizing: border-box;
         height: auto;
         max-height: 0;
-        transition: max-height 0.4s linear 100ms;
+        transition: max-height 0.4s ease-in 50ms;
         position: absolute;
         width: 100%;
         background-color: #fff;
@@ -266,7 +246,7 @@
     .option-wrapper:focus-within .div {
         border: 1px solid #00000014;
         box-shadow: 1px 1px 2px #e5dede;
-        transition: max-height 0.5s;
+        transition: max-height 0.3s ease-in;
         max-height: 170px;
     }
     .option-item:hover {
@@ -293,6 +273,25 @@
         position: absolute;
         z-index: 10;
         padding: 7px 8px;
+    }
+    .btn-outline {
+        color: #424242;
+        border: 1px solid currentColor;
+        box-shadow: none;
+        background-color: transparent;
+    }
+    .btn-outline:hover {
+        background-color: #424242;
+        border-color: #424242;
+        color: #ffffff;
+    }
+    .wrong {
+        border: 1px solid rgb(224, 0, 0);
+    }
+    .wrong:focus {
+        border: 1px solid #e00000;
+        /* box-shadow: 0 0 2px 1px #e00000; */
+        outline: none;
     }
 }
 

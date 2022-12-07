@@ -1,6 +1,6 @@
 import React from 'react';
 
-function ListItem({ textField, data, value, selected, ...other }) {
+function ListItem({ textField, data, value, selected, className, selectedStyleClassName, ...other }) {
     const keyGenerator = () => {
         let randNums = Math.round(Math.random() * 9000 + 999);
         let key = ['', '-', randNums];
@@ -23,7 +23,7 @@ function ListItem({ textField, data, value, selected, ...other }) {
             {typeof data[0] === 'string' &&
                 data.map((item) => (
                     <li
-                        className={`option-item  ${selected === item ? 'selected' : ''}`}
+                        className={`option-item  ${selected === item ? `${selectedStyleClassName || 'selected'}` : ''} ${className}`}
                         onClick={() => value(item)}
                         {...other}
                         key={keyGenerator()}>
@@ -33,7 +33,7 @@ function ListItem({ textField, data, value, selected, ...other }) {
             {typeof data[0] === 'object' &&
                 data.map((item) => (
                     <li
-                        className={`option-item ${selected === item ? 'selected' : ''}`}
+                        className={`option-item ${selected === item ? 'selected' : ''} ${className}`}
                         onClick={() => { value(item); }}
                         key={item.id ? item.id : keyGenerator()}
                         {...other}
