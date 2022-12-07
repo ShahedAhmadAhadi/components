@@ -14,31 +14,31 @@ function ListItem({ textField, data, value, selected, ...other }) {
         }
         return key.join('');
     };
-    console.log(selected)
+    if (typeof data[0] === 'string') {
+
+    }
     return (
         <React.Fragment>
             {!data.length && <li className='option-item-empty'>empty</li>}
-            {textField &&
-                data &&
+            {typeof data[0] === 'string' &&
                 data.map((item) => (
                     <li
-                        className={`option-item ${selected === item ? 'selected': ''}`}
-                        onClick={() => {value(item); }}
-                        key={item.id ? item.id : keyGenerator()}
-                        {...other}
-                        >
-                        {item[textField]}
-                    </li>
-                ))}
-            {!textField &&
-                data &&
-                data.map((item) => (
-                    <li
-                        className={`option-item  ${selected === item ? 'selected': ''}`}
+                        className={`option-item  ${selected === item ? 'selected' : ''}`}
                         onClick={() => value(item)}
                         {...other}
                         key={keyGenerator()}>
                         {item}
+                    </li>
+                ))}
+            {typeof data[0] === 'object' &&
+                data.map((item) => (
+                    <li
+                        className={`option-item ${selected === item ? 'selected' : ''}`}
+                        onClick={() => { value(item); }}
+                        key={item.id ? item.id : keyGenerator()}
+                        {...other}
+                    >
+                        {item[textField]}
                     </li>
                 ))}
         </React.Fragment>

@@ -17,7 +17,7 @@ function App() {
   const handleChange = (event) => {
     setValue(event.target.value);
   };
-  const data = [{ a: 'red', id: 1 }]
+  const data = [{ a: 'red', id: 1 }, { a: 'green', id: 2 }, { a: 'blue', id: 3 }]
   // const data = ['blue', 'red', 'green', 'black', 'white', 'pink', 'yellow', 'orange', 'gray', 'blo', 'blu']
   // const data = []
   const textField = 'a'

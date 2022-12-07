@@ -16,32 +16,23 @@ function Drop({ data: initialData, defaultItem, textField, value: propValue, fil
     }, [filterable])
 
     useEffect(() => {
-        if (textField) {
-            console.log(initialData)
+        try {
             const newData = initialData.filter(e => e[textField].startsWith(filter))
             setData(newData)
             if (!filter) {
                 setData(initialData)
             }
-        } else {
+            
+        } catch (error) {
             const newData = initialData.filter(e => e.startsWith(filter))
             setData(newData)
             if (!filter) {
                 setData(initialData)
             }
+            console.log(data)
         }
-    }, [filter, initialData])
+    }, [filter, textField])
 
-
-    const filterOnChange = () => {
-        console.log(filter)
-        const newData = data.filter(e => e.startsWith(filter))
-        setData(newData)
-        if (!filter) {
-            setData(initialData)
-        }
-    }
-    // console.log(filter, 'filter')
     defaultItem = 'data'
     return (
         <React.Fragment>
