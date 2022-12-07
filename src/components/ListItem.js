@@ -1,6 +1,16 @@
 import React from 'react';
 
-function ListItem({ textField, data, value, selected, className, selectedStyleClassName, ...other }) {
+// This Component is for rendering array of primitives or array of objects returns li element with values in arrays
+function ListItem({
+    textField,
+    data = [],
+    value,
+    selected,
+    className,
+    selectedStyleClassName,
+    ...other
+}) {
+    // This functions is used for generating a key for every li element return eg: SVDT-8249, LKNA-3005. example pattern is AAAA-IIII
     const keyGenerator = () => {
         let randNums = Math.round(Math.random() * 9000 + 999);
         let key = ['', '-', randNums];
@@ -14,16 +24,20 @@ function ListItem({ textField, data, value, selected, className, selectedStyleCl
         }
         return key.join('');
     };
-    if (typeof data[0] === 'string') {
-
-    }
+    // if length = 0 in array below will return empty
+    // if array has primitives the keyGenerator would generate key for every item
+    // if array has objects first check if object has key (id) and set id as key of list items if not the keyGenerator would genrate key for every item
     return (
         <React.Fragment>
-            {!data.length && <li className='option-item-empty'>empty</li>}
+            {!data.length && <li className="option-item-empty">empty</li>}
             {typeof data[0] === 'string' &&
                 data.map((item) => (
                     <li
-                        className={`option-item  ${selected === item ? `${selectedStyleClassName || 'selected'}` : ''} ${className}`}
+                        className={`option-item  ${
+                            selected === item
+                                ? `${selectedStyleClassName || 'selected'}`
+                                : ''
+                        } ${className}`}
                         onClick={() => value(item)}
                         {...other}
                         key={keyGenerator()}>
@@ -33,11 +47,14 @@ function ListItem({ textField, data, value, selected, className, selectedStyleCl
             {typeof data[0] === 'object' &&
                 data.map((item) => (
                     <li
-                        className={`option-item ${selected === item ? 'selected' : ''} ${className}`}
-                        onClick={() => { value(item); }}
+                        className={`option-item ${
+                            selected === item ? 'selected' : ''
+                        } ${className}`}
+                        onClick={() => {
+                            value(item);
+                        }}
                         key={item.id ? item.id : keyGenerator()}
-                        {...other}
-                    >
+                        {...other}>
                         {item[textField]}
                     </li>
                 ))}
