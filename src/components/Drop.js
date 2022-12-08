@@ -48,6 +48,13 @@ function Drop({
         initialData could be of two type array of primitives or array of objects.
         With array of objects the textField is compulsory or else the error will be objects cannot be rendered in DOM.
         */
+    // useEffect(() => {
+    //     if (filterable) {
+            
+    //         inputRef.current.focus()
+    //     }
+    // }, [filterable])
+    
     useEffect(() => {
         try {
             const newData = initialData.filter((e) =>
@@ -75,6 +82,7 @@ function Drop({
                 }}
                 className={`option-wrapper`}>
                 <Button
+                    onClick={() => {inputRef.current.focus()}}
                     className={`select option-item ${className} ${
                         required && !value ? 'wrong' : ''
                     }`}
@@ -88,10 +96,10 @@ function Drop({
                     </span>
                     <span className="select-caret">&#119119;</span>
                 </Button>
-                <div className="div overflow-auto">
+                <div className="div">
                     {filterable && (
                         <li
-                            className="option-item sticky top-0"
+                            className="option-item sticky top-0 mb-1.5"
                             key={'search-list-items'}>
                             <img
                                 className="search-icon"
@@ -105,8 +113,7 @@ function Drop({
                                 }}
                                 value={filter}
                                 ref={inputRef}
-                                id="search-input"
-                                className="filter-input pl-8"
+                                className="filter-input pl-8 "
                             />
                         </li>
                     )}
