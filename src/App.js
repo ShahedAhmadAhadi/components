@@ -1,8 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './App.css';
 import Button from './components/Button';
-import Drop from './components/Drop';
-import DropDownLIst from './components/DropDownLIst';
+import DropDownLIst from './components/DropDownList';
 import Input from './components/Input';
 
 function App() {
@@ -25,7 +24,7 @@ function App() {
       <Input label="name" pattern='[A-Za-z]+' className="text-blue-300 border-cyan-600 focus:border-yellow-500" />
       <br></br>
       <br></br>
-      <Drop selectedStyleClassName={'bg-yellow-200'} childrenClassName={'text-pink-600'} fillMode={'outline'} required={true} filterable={true} defaultItem={'Select Color ...'} textField={textField} data={data} className={'rounded-full'} onChange={(val) => setValue(val)} value={value} />
+      <DropDownLIst selectedStyleClassName={'bg-yellow-200'} childrenClassName={'text-pink-600'} fillMode={'outline'} required={true} filterable={true} defaultItem={'Select Color ...'} textField={textField} data={data} className={'rounded-full'} onChange={(val) => setValue(val)} value={value} />
       <br></br>
       <Button fillMode={''} disabled className={''} icon={'bi bi-wallet2'}></Button>
       <Button fillMode={'flat'} className={'a'} icon={'bi bi-wallet2'}></Button>
