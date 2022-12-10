@@ -279,11 +279,40 @@
         z-index: 10;
         padding: 7px 8px;
     }
+    .chip-sm{
+        padding: 2px 4px;
+        line-height: 1;
+    }
+    .chip-md {
+        padding: 4px 4px;
+        line-height: 1;
+    }
+    .chip-lg{
+        padding: 6px 4px;
+        line-height: 1;
+    }
+    .removable{
+        background-color: #424242;
+        color: #f5f5f5;
+        display: inline-block;
+        border-radius: 9999px;
+        padding: 0px 2.9px;
+        font-weight: 550;
+        /* height: 16px;
+        width: 16px; */
+    }
+    .chip-selected {
+        background-color: #d2d2d2;
+    }
     .btn-outline {
         color: #424242;
         border: 1px solid currentColor;
         box-shadow: none;
         background-color: transparent;
+    }
+    .btn-outline:hover .removable {
+        color: #424242;
+        background-color: #ffffff;
     }
     .btn-outline:hover {
         background-color: #424242;

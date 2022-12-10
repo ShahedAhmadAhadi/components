@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './App.css';
 import Button from './components/Button';
+import Chip from './components/Chip';
 import DropDownLIst from './components/DropDownList';
 import Input from './components/Input';
 
@@ -29,6 +30,7 @@ function App() {
       <Button fillMode={''} disabled className={''} icon={'bi bi-wallet2'}></Button>
       <Button fillMode={'flat'} className={'a'} icon={'bi bi-wallet2'}></Button>
       <Button fillMode={'outline'} className={''} icon={'bi bi-wallet2'}></Button>
+      <Chip removable={true} icon={'bi bi-wallet2'} >Chip</Chip>
       <div className="example-config">Selected Value: {value}</div>
       {/* <DropDownLIst data={data} onChange={handleChange}></DropDownLIst> */}
       <Button fillMode={'link'} className={''} icon={'bi bi-wallet2'}>button</Button>
