@@ -304,6 +304,9 @@
     .chip-selected {
         background-color: #d2d2d2;
     }
+    .chip-selected .removable{
+        color: #d2d2d2;
+    }
     .btn-outline {
         color: #424242;
         border: 1px solid currentColor;
