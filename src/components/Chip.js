@@ -1,7 +1,7 @@
 import React from 'react'
 import Button from './Button'
 
-function Chip({ text, value, removable, size, removeIcon, selected, selectedIcon, children, ...other }) {
+function Chip({ text, value, removable, remove, size, removeIcon, selected, selectedIcon, children, className, ...other }) {
     switch (size) {
         case 'large':
             size = 'chip-lg'
@@ -21,11 +21,11 @@ function Chip({ text, value, removable, size, removeIcon, selected, selectedIcon
     }
     return (
         <React.Fragment>
-            <Button className={`${size} ${selected ? "chip-selected": ''}`} {...other}>
+            <Button className={`${size} ${selected ? "chip-selected": ''} ${className}`} {...other}>
                 <span className='btn'>
                     {selectedIcon && selected && (<span className={`${selectedIcon} icon`}></span>)}
                     {other.children || text}
-                    {removable && <span className={`${removeIcon? `${removeIcon}`: 'removable'} icon`}>{removeIcon ? '': <>&times;</>}</span>}
+                    {removable && <span onClick={remove? () => remove(other.id) : undefined} className={`${removeIcon? `${removeIcon}`: 'removable'} icon`}>{removeIcon ? '': <>&times;</>}</span>}
                     </span>
             </Button>
         </React.Fragment>
