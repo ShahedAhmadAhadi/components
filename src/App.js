@@ -60,7 +60,8 @@ function App() {
       <Button fillMode={'flat'} className={'a'} icon={'bi bi-wallet2'}></Button>
       <Button fillMode={'outline'} className={''} icon={'bi bi-wallet2'}></Button>
       <Chip className={'bg-red-50'} size={'small'} removable={true} icon={'bi bi-wallet2'}  text='white' selectedIcon={'bi bi-wallet'} selected> </Chip>
-      <ChipList data={fruits} chip={(props) =>{console.log('props', props); return <Chip removable={true} className={'bg-red-200'} {...props} />}}></ChipList> 
+      {/* <ChipList data={fruits} chip={(props) =>{console.log('props', props); return <Chip removable={true} className={'bg-red-200'} {...props} />}}></ChipList>  */}
+      <ChipList selection={'single'} data={fruits} removable={true}></ChipList> 
       <div className="example-config">Selected Value: {value}</div>
       {/* <DropDownLIst data={data} onChange={handleChange}></DropDownLIst> */}
       <Button fillMode={'link'} className={''} icon={'bi bi-wallet2'}>button</Button>
