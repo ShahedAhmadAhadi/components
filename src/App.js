@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import './App.css';
 import Button from './components/Button';
 import Chip from './components/Chip';
+import ChipL from './components/ChipL';
 import ChipList from './components/ChipList';
 import DropDownLIst from './components/DropDownList';
 import Input from './components/Input';
@@ -84,7 +85,7 @@ function App() {
   };
   const winterMonths = ["1", "2", "3"];
   const MonthChip = (props) => {
-    console.log(props, 'sldjifioejoiejl')
+    // console.log(props, 'sldjifioejoiejl')
     // Winter!!!!
     return (
       <Chip
@@ -144,10 +145,11 @@ function App() {
       ],
     },
   ];
-  const [meal, setMeal] = useState(meals[0]);
+  const [meal, setMeal] = useState(meals[1]);
   const handleClick = (name) => {
     let newMeal = meals.find((m) => m.name === name);
     setMeal(newMeal);
+    console.log(newMeal)
   };
   return (
     <div className="App">
@@ -158,7 +160,6 @@ function App() {
             return (
               <div key={index}>
                 <Button
-                  togglable={true}
                   selected={meal.name === m.name}
                   onClick={handleClick.bind(undefined, m.name)}
                 >
@@ -169,8 +170,8 @@ function App() {
             );
           })}
       <h4>Add more:</h4>
-      {console.log(meal)}
-        <ChipList
+      {/* {console.log(meal)} */}
+        <ChipL
           // key={meal.name}
           selection="multiple"
           data={meal.data}
@@ -191,7 +192,7 @@ function App() {
       <Button fillMode={'flat'} className={'a'} icon={'bi bi-wallet2'}></Button>
       <Button fillMode={'outline'} className={''} icon={'bi bi-wallet2'}></Button>
       <Chip className={'bg-red-50'} size={'small'} removable={true} icon={'bi bi-wallet2'}  text='white' selectedIcon={'bi bi-wallet'} selected> </Chip>
-      <ChipList selection={'single'} data={fruits} chip={(props) =>{ return <Chip removable={true} {...props} />}}></ChipList> 
+      <ChipList selection={'single'} data={fruits} chip={(props) =>{ console.log(props); return <Chip removable={true} {...props} />}}></ChipList> 
       {/* <ChipList  data={fruits} selection={'single'} removable={true}></ChipList>  */}
       <div className="example-config">Selected Value: {value}</div>
       {/* <DropDownLIst data={data} onChange={handleChange}></DropDownLIst> */}

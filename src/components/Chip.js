@@ -1,7 +1,8 @@
 import React from 'react'
 import Button from './Button'
 
-function Chip({ text, value, removable, remove, size, removeIcon, selected, selectedIcon, children, className, ...other }) {
+function Chip({ text, value, removable, remove, size, removeIcon, selected, selectedIcon, children, className, dataItem, ...other }) {
+    dataItem = ''
     switch (size) {
         case 'large':
             size = 'chip-lg'
