@@ -1,7 +1,7 @@
 import React from 'react'
 import Button from './Button'
 
-function Chip({ text, value, removable, remove, size, removeIcon, selected, selectedIcon, children, className, dataItem, ...other }) {
+function Chip({ text, value, removable, remove, size, style, removeIcon, selected, selectedIcon, selectedStyle, selectedClassName, removableStyle, removableClassName, selectedRemovableStyle, selectedRemovableClassName, children, className, dataItem, ...other }) {
     dataItem = ''
     switch (size) {
         case 'large':
@@ -22,11 +22,11 @@ function Chip({ text, value, removable, remove, size, removeIcon, selected, sele
     }
     return (
         <React.Fragment>
-            <Button className={`${size} ${selected ? "chip-selected": ''} ${className}`} {...other}>
+            <Button style={selected && selectedStyle? {...style, ...selectedStyle}: {...style}} className={`${size} ${selected ? "chip-selected": ''} ${selectedClassName && selected ? selectedClassName: ''} ${className}`} {...other}>
                 <span className='btn'>
                     {selectedIcon && selected && (<span className={`${selectedIcon} icon`}></span>)}
                     {other.children || text}
-                    {removable && <span onClick={remove? (e) => remove(e, other.id) : undefined} className={`${removeIcon? `${removeIcon}`: 'removable'} icon`}>{removeIcon ? '': <>&times;</>}</span>}
+                    {removable && <span onClick={remove? (e) => remove(e, other.id) : undefined} style={selected && selectedRemovableStyle? {...removableStyle, ...selectedRemovableStyle}: {...removableStyle}} className={`${removeIcon? `${removeIcon}`: 'removable'} icon ${selectedRemovableClassName && selected ? selectedRemovableClassName: removableClassName}`}>{removeIcon ? '': <>&times;</>}</span>}
                     </span>
             </Button>
         </React.Fragment>

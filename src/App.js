@@ -37,6 +37,7 @@ function App() {
       text: "Strawberry",
       value: "strawberry",
       disabled: false,
+      selected: true,
     },
     {
       text: "Banana",
@@ -177,6 +178,8 @@ function App() {
           data={meal.data}
           textField="name"
           valueField="name"
+          removable={true}
+          style={{backgroundColor: 'white', padding: '8px'}} selectedStyle={{backgroundColor: 'black', color: 'white'}} removableStyle={{backgroundColor: 'black', color: 'white'}} selectedRemovableStyle={{backgroundColor: 'white', color: 'black'}}
         />
 
       <br></br>
@@ -192,7 +195,7 @@ function App() {
       <Button fillMode={'flat'} className={'a'} icon={'bi bi-wallet2'}></Button>
       <Button fillMode={'outline'} className={''} icon={'bi bi-wallet2'}></Button>
       <Chip className={'bg-red-50'} size={'small'} removable={true} icon={'bi bi-wallet2'}  text='white' selectedIcon={'bi bi-wallet'} selected> </Chip>
-      <ChipList selection={'single'} data={fruits} chip={(props) =>{ return <Chip removable={true} {...props} />}}></ChipList> 
+      <ChipList className={'bg-red-200 p-2'} selectedClassName={'bg-red-400'} removableClassName={'bg-yellow-200 text-black'} selectedRemovableClassName={'bg-gray-800 text-white'} selection={'multiple'} data={fruits} chip={(props) =>{ return <Chip removable={true} {...props} />}}></ChipList> 
       {/* <ChipList  data={fruits} selection={'single'} removable={true}></ChipList>  */}
       <div className="example-config">Selected Value: {value}</div>
       {/* <DropDownLIst data={data} onChange={handleChange}></DropDownLIst> */}
