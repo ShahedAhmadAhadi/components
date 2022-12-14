@@ -1,16 +1,28 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import Chip from './Chip'
+import ChipItem from './ChipItem'
 import { keyGenerator } from './index'
 
 
-const ChipL = ({ data: initialData, selection, defaultData, textField, valueField, onDataChange, chip, ...props }) => {
+const ChipL = (props) => {
     // let customData;
-    // const [data, setData] = useState()
+    const newData = props.data.map(item => ({dataItem: {...item}, text:`${props.textField? item[props.textField]: item.text}`, value: `${props.textField? item[props.valueField]: item.value}`, key: item.id || keyGenerator()}))
+    // const [data, setData] = useState(newData)
+    // if (initialData !== a) {
+    //     console.log(a, initialData)
+    // }
+    const newProps = {...props, newData}
+    // const a = Object.assign(initialData)
+    // useEffect(() => {
+    //     console.log('use')
+    //     setData(newData)
+    // }, [initialData])
     // let customData = {...initialData}
-    useEffect(() => {
-        initialData.map(item => ({dataItem: {...item}, text:`${textField? item[textField]: item.text}`, value: `${textField? item[valueField]: item.value}`, key: item.id || keyGenerator()}))
-        // setData(customData)
-    }, [initialData])
+    // useEffect(() => {
+    //     setData(a)
+    //     // initialData  = a
+    //     console.log(a, 'sjdfljiej')
+    // })
     
     // initialData.map(i => {return i.key? i: { ...i, key: keyGenerator(), id: i.key}} )
         // setData(customData)
@@ -22,44 +34,11 @@ const ChipL = ({ data: initialData, selection, defaultData, textField, valueFiel
     // console.log(chip())
     // console.log(data)
     // console.log(chip(data[1]))
-    const select = (item) => {
-        switch (selection) {
-            case 'multiple':
-                if (item.selected) {
-                    let deSelectedItem = initialData.map((i) => { return i.key === item.key ? { ...i, selected: false } : i });
-                    initialData = deSelectedItem
-                } else {
-                    let selectedItem = initialData.map((i) => { return i.key === item.key ? { ...i, selected: true } : i });
-                    initialData = selectedItem
-                }
-                break;
-                case 'single':
-                if (item.selected) {
-                    let deSelectedItem = initialData.map((i) => { return i.key === item.key ? { ...i, selected: false } : i });
-                    initialData = deSelectedItem
-                } else {
-                    let selectedItem = initialData.map((i) => { return i.key === item.key ? { ...i, selected: true } : {...i, selected: false} });
-                    initialData = selectedItem
-                }
-                break
-            default:
-                break
-        }
-    }
-
-    const remove = (e, key) => {
-        e.stopPropagation()
-        let removeItem = initialData.filter((i) => { return i.key !== key });
-        initialData = removeItem
-    }
+    
     // console.log(data)
     return (
         <React.Fragment>
-            {/* {data && chip && data.map(item => { item.key = (`${item.id || keyGenerator()}`); item.id=item.key; item.remove = remove; return chip(item) })} */}
-            {initialData && chip && initialData.map(item => { item.remove=((e) => remove(e, item.key)); item.onClick=(() => select(item)); return chip(item) })}
-            {/* {data && !chip && data.map(item => {retrun <Chip onClick={() => select(item)} selected={selection} {...item} />})} */}
-            {/* {data && !chip && data.map(item => { item.key = `${item.id || keyGenerator()}`; return <Chip onClick={() => select(item)} {...item} /> })} */}
-            {initialData && !chip && initialData.map(item => {return <Chip onClick={() => select(item)} {...item} /> })}
+            <ChipItem {...newProps} />
         </React.Fragment>
     )
 }
