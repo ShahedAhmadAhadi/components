@@ -6,6 +6,7 @@ import ChipL from './components/ChipL';
 import ChipList from './components/ChipList';
 import DropDownLIst from './components/DropDownList';
 import Input from './components/Input';
+import MultiSelect from './components/MultiSelect';
 
 function App() {
   const inp = useRef(null)
@@ -146,6 +147,16 @@ function App() {
       ],
     },
   ];
+  const sport = [
+    "Baseball",
+    "Basketball",
+    "Cricket",
+    "Field Hockey",
+    "Football",
+    "Table Tennis",
+    "Tennis",
+    "Volleyball",
+  ];
   const [meal, setMeal] = useState(meals[1]);
   const handleClick = (name) => {
     let newMeal = meals.find((m) => m.name === name);
@@ -185,6 +196,7 @@ function App() {
       <br></br>
       <DropDownLIst selectedStyleClassName={'bg-yellow-200'} childrenClassName={'text-pink-600'} fillMode={'outline'} required={true} filterable={true} defaultItem={'Select Color ...'} textField={textField} data={data} className={'rounded-full'} onChange={(val) => setValue(val)} value={value} />
       <br></br>
+      <MultiSelect data={sport} />
       <ChipList
         selection="multiple"
         data={monthsData}

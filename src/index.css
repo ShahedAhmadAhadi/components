@@ -218,8 +218,6 @@
         max-height: 30px; */
         height: max-content;
         width: 100%;
-        /* overflow:hidden; */
-        z-index: 10;
         position: relative;
         padding: 0;
         top: 14px;
@@ -231,7 +229,6 @@
         padding: 4px 8px;
         font-size: 14px;
         color: #424242;
-        /* display: flex; */
     }
     .div {
         box-sizing: border-box;
@@ -276,7 +273,7 @@
     }
     .search-icon {
         position: absolute;
-        z-index: 10;
+        z-index: 5;
         padding: 7px 8px;
     }
     .chip-sm{
