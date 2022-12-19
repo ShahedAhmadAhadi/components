@@ -192,7 +192,7 @@ function App() {
           removable={true}
           style={{backgroundColor: 'white', padding: '8px'}} selectedStyle={{backgroundColor: 'black', color: 'white'}} removableStyle={{backgroundColor: 'black', color: 'white'}} selectedRemovableStyle={{backgroundColor: 'white', color: 'black'}}
         />
-
+        <ChipList data={sport}></ChipList>
       <br></br>
       <DropDownLIst selectedStyleClassName={'bg-yellow-200'} childrenClassName={'text-pink-600'} fillMode={'outline'} required={true} filterable={true} defaultItem={'Select Color ...'} textField={textField} data={data} className={'rounded-full'} onChange={(val) => setValue(val)} value={value} />
       <br></br>

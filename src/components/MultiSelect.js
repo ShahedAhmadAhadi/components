@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import Button from './Button';
+import Chip from './Chip';
+import ChipList from './ChipList';
 import Input from './Input';
 import ListItem from './ListItem';
 
@@ -7,7 +9,7 @@ const MultiSelect = ({
     data: initialData = [],
     defaultItem,
     textField,
-    value: propValue,
+    value: propValue = [],
     className,
     required,
     childrenClassName,
@@ -16,34 +18,24 @@ const MultiSelect = ({
     ...other
 }) => {
     const [data, setData] = useState(initialData);
-    const [value, setValue] = useState(propValue);
-    const [filter, setFilter] = useState(null);
-    const inputRef = useRef(null);
+    const [value, setValue] = useState([...propValue]);
+    // const [selected, setSelected] = useState('')
 
     useEffect(() => {
         if (other.onChange) {
             other.onChange(value);
         }
     });
-    
     useEffect(() => {
-        try {
-            const newData = initialData.filter((e) =>
-                e[textField].startsWith(filter)
-            );
-            setData(newData);
-            if (!filter) {
-                setData(initialData);
-            }
-        } catch (error) {
-            const newData = initialData.filter((e) => e.startsWith(filter));
-            setData(newData);
-            if (!filter) {
-                setData(initialData);
-            }
-            console.log(data);
-        }
-    }, [filter, textField]);
+        // console.log(value)
+    })
+    const selection = (item) => {
+        setValue(prevState => { console.log(prevState); return [...prevState, item] })
+        const newData = value.filter((e) =>  {return JSON.stringify(e) !== JSON.stringify(item)} );
+        console.log(newData, item)
+    }
+    const selectedValue = <ChipList data={value} chip={props => { return <Chip removable={true} {...props} /> }}></ChipList>
+    // console.log(value)
     return (
         <React.Fragment>
             <ul
@@ -51,11 +43,12 @@ const MultiSelect = ({
                     e.stopPropagation();
                 }}
                 className={`option-wrapper`}>
+                <div>{selectedValue && selectedValue}</div>
                 <Input
                     // onClick={() => {inputRef.current.focus()}}
-                    className={`${className} ${
-                        required && !value ? 'wrong' : ''
-                    }`}
+                    className={`${className} ${required && !value ? 'wrong' : ''
+                        }`}
+
                     {...other}>
                     {/* <span className="select-default-text">
                         {value
@@ -67,7 +60,7 @@ const MultiSelect = ({
                     <span className="select-caret">&times;</span> */}
                 </Input>
                 <div className="div">
-                    
+
                     <ListItem
                         selectedStyleClassName={selectedStyleClassName}
                         className={childrenClassName}
@@ -75,7 +68,8 @@ const MultiSelect = ({
                         data={data}
                         textField={textField}
                         selected={value}
-                        value={(item) => setValue(item)}
+                        // value={(item) => setValue(prevState => { console.log(prevState); return [...prevState, { text: item }] })}
+                        value={(item) => selection({text :item})}
                     />
                 </div>
             </ul>

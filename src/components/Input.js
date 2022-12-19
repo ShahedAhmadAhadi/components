@@ -1,4 +1,6 @@
 import React, { forwardRef, useEffect, useState } from 'react';
+import Chip from './Chip';
+import ChipList from './ChipList';
 
 /* 
     Here forwardRef is used for handling the ref prop. 
