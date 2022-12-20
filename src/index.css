@@ -16,7 +16,6 @@
         border-radius: 4px;
         outline: none;
     }
-
     .default-style-lg {
         box-sizing: border-box;
         padding: 8px 12px;
@@ -45,7 +44,7 @@
         outline: none;
     }
 
-    .default-style:focus {
+    .default-style:focus-within {
         outline-offset: 0px;
         border: 1px solid #00000029;
         box-shadow: 0 0 0 2px #00000014;
@@ -160,6 +159,15 @@
     .input {
         padding: 4px 8px;
         font-size: 14px;
+        border: 1px solid transparent;
+        line-height: 1.4285714286;
+        color: #424242;
+        vertical-align: middle;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        border-radius: 4px;
+        outline: none;
+        position: relative;
     }
     .input:focus ~ .label {
         top: 0;
@@ -171,10 +179,13 @@
         box-sizing: border-box;
         display: inline-flex;
         vertical-align: middle;
+        flex-wrap: wrap;
         position: relative;
         flex-direction: column;
         justify-content: stretch;
         width: 100%;
+        gap: 2px;
+        align-items: center;
     }
 
     .wrong-label {
@@ -260,6 +271,11 @@
         justify-content: center;
         align-items: center;
     }
+    .multi-chips {
+        display: flex;
+        position: relative;
+        /* background-color: red; */
+    }
     .selected{
         background-color: #ff6358;
         color: white;
@@ -279,14 +295,17 @@
     .chip-sm{
         padding: 2px 4px;
         line-height: 1;
+        white-space: nowrap;
     }
     .chip-md {
         padding: 4px 4px;
         line-height: 1;
+        white-space: nowrap;
     }
     .chip-lg{
         padding: 6px 4px;
         line-height: 1;
+        white-space: nowrap;
     }
     .removable{
         background-color: #424242;

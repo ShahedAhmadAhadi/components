@@ -19,6 +19,7 @@ const MultiSelect = ({
 }) => {
     const [data, setData] = useState(initialData);
     const [value, setValue] = useState([...propValue]);
+    // setValue([{text: 'Football'}, {text: 'tennis'}])
     // const [selected, setSelected] = useState('')
 
     useEffect(() => {
@@ -32,9 +33,10 @@ const MultiSelect = ({
     const selection = (item) => {
         setValue(prevState => { console.log(prevState); return [...prevState, item] })
         const newData = value.filter((e) =>  {return JSON.stringify(e) !== JSON.stringify(item)} );
+        // setValue(newData)
         console.log(newData, item)
     }
-    const selectedValue = <ChipList data={value} chip={props => { return <Chip removable={true} {...props} /> }}></ChipList>
+    const selectedValue = <ChipList data={value} chip={props => { return <Chip size={'medium'} removable={true} {...props} /> }}></ChipList>
     // console.log(value)
     return (
         <React.Fragment>
@@ -43,13 +45,13 @@ const MultiSelect = ({
                     e.stopPropagation();
                 }}
                 className={`option-wrapper`}>
-                <div>{selectedValue && selectedValue}</div>
                 <Input
                     // onClick={() => {inputRef.current.focus()}}
-                    className={`${className} ${required && !value ? 'wrong' : ''
-                        }`}
-
+                    className={` flex-1 ${className} ${required && !value ? 'wrong' : ''
+                }`}
+                    wrapperClassName={`flex-row`}
                     {...other}>
+                        {selectedValue && selectedValue}
                     {/* <span className="select-default-text">
                         {value
                             ? typeof value == 'string'

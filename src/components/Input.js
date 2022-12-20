@@ -20,6 +20,9 @@ const Input = forwardRef(function Input(
         styleOnError,
         labelStyle,
         labelStyleError,
+        wrapperStyle,
+        wrapperClassName,
+        children,
         ...other
     },
     ref
@@ -76,12 +79,13 @@ const Input = forwardRef(function Input(
     return (
         <React.Fragment>
             {!label && (
-                <div className={`wrapper p-0`} style={{ padding: '0' }}>
+                <div className={`wrapper default-style p-0 ${wrapperClassName}`} style={wrapperStyle}>
+                    {children && children}
                     <input
                         value={inputValue}
                         className={`${
                             inValid ? 'wrong' : ''
-                        } default-style input w-full ${className}`}
+                        } input w-full ${className}`}
                         style={style}
                         onChange={onInputChange}
                         pattern={'[A-Za-z]+'}
@@ -92,7 +96,8 @@ const Input = forwardRef(function Input(
                 </div>
             )}
             {label && (
-                <div className={`wrapper `}>
+                <div className={`wrapper ${wrapperClassName}`} style={wrapperStyle}>
+                    {/* {children && children} */}
                     <input
                         value={inputValue}
                         className={`${
