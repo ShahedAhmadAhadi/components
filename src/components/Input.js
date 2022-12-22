@@ -79,7 +79,9 @@ const Input = forwardRef(function Input(
     return (
         <React.Fragment>
             {!label && (
-                <div className={`wrapper default-style p-0 ${wrapperClassName}`} style={wrapperStyle}>
+                <div
+                    className={`wrapper default-style p-0 ${wrapperClassName}`}
+                    style={wrapperStyle}>
                     {children && children}
                     <input
                         value={inputValue}
@@ -96,7 +98,9 @@ const Input = forwardRef(function Input(
                 </div>
             )}
             {label && (
-                <div className={`wrapper ${wrapperClassName}`} style={wrapperStyle}>
+                <div
+                    className={`wrapper ${wrapperClassName}`}
+                    style={wrapperStyle}>
                     {/* {children && children} */}
                     <input
                         value={inputValue}

@@ -73,7 +73,7 @@ const ChipList = ({
             return i.key !== key;
         });
         setData(removeItem);
-        value(removeItem)
+        value(removeItem);
     };
     return (
         <React.Fragment>

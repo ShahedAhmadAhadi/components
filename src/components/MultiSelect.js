@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import Chip from './Chip';
 import ChipList from './ChipList';
 import Input from './Input';
@@ -18,8 +18,6 @@ const MultiSelect = ({
 }) => {
     const [data, setData] = useState(initialData);
     const [value, setValue] = useState([...propValue]);
-    // setValue([{text: 'Football'}, {text: 'tennis'}])
-    // const [selected, setSelected] = useState('')
 
     useEffect(() => {
         if (other.onChange) {
@@ -27,15 +25,31 @@ const MultiSelect = ({
         }
     });
     const selection = (item) => {
-        const newData = value.filter((e) =>  {return JSON.stringify(e.text) === JSON.stringify(item.text)} );
+        const newData = value.filter((e) => {
+            return JSON.stringify(e.text) === JSON.stringify(item.text);
+        });
         if (newData.length !== 0) {
-            const newData = value.filter((e) => {return JSON.stringify(e.text) !== JSON.stringify(item.text)})
-            setValue(newData)
-        }else{
-            setValue(prevState => { console.log(prevState); return [...prevState, item] })
+            const newData = value.filter((e) => {
+                return JSON.stringify(e.text) !== JSON.stringify(item.text);
+            });
+            setValue(newData);
+        } else {
+            setValue((prevState) => {
+                console.log(prevState);
+                return [...prevState, item];
+            });
         }
-    }
-    const selectedValue = <ChipList data={value} value={(i) => {setValue(i)}} chip={props => { return <Chip size={'medium'} removable={true} {...props} /> }}></ChipList>
+    };
+    const selectedValue = (
+        <ChipList
+            data={value}
+            value={(i) => {
+                setValue(i);
+            }}
+            chip={(props) => {
+                return <Chip size={'medium'} removable={true} {...props} />;
+            }}></ChipList>
+    );
     return (
         <React.Fragment>
             <ul
@@ -44,20 +58,12 @@ const MultiSelect = ({
                 }}
                 className={`option-wrapper`}>
                 <Input
-                    // onClick={() => {inputRef.current.focus()}}
-                    className={` flex-1 ${className} ${required && !value ? 'wrong' : ''
-                }`}
+                    className={` flex-1 ${className} ${
+                        required && !value ? 'wrong' : ''
+                    }`}
                     wrapperClassName={`flex-row`}
                     {...other}>
-                        {selectedValue && selectedValue}
-                    {/* <span className="select-default-text">
-                        {value
-                            ? typeof value == 'string'
-                                ? value
-                                : value[textField]
-                            : defaultItem}
-                    </span>
-                    <span className="select-caret">&times;</span> */}
+                    {selectedValue && selectedValue}
                     {value.length > 0 && (
                         <span
                             onClick={() => setValue([])}
@@ -67,7 +73,6 @@ const MultiSelect = ({
                     )}
                 </Input>
                 <div className="div">
-
                     <ListItem
                         selectedStyleClassName={selectedStyleClassName}
                         className={childrenClassName}
@@ -75,12 +80,12 @@ const MultiSelect = ({
                         data={data}
                         textField={textField}
                         selected={value}
-                        value={(item) => selection({text :item})}
+                        value={(item) => selection({ text: item })}
                     />
                 </div>
             </ul>
         </React.Fragment>
-    )
-}
+    );
+};
 
-export default MultiSelect
+export default MultiSelect;
