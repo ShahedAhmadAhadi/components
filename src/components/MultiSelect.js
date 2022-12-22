@@ -31,12 +31,18 @@ const MultiSelect = ({
         // console.log(value)
     })
     const selection = (item) => {
-        setValue(prevState => { console.log(prevState); return [...prevState, item] })
-        const newData = value.filter((e) =>  {return JSON.stringify(e) !== JSON.stringify(item)} );
+        const newData = value.filter((e) =>  {return JSON.stringify(e.text) === JSON.stringify(item.text)} );
+        if (newData.length !== 0) {
+            const newData = value.filter((e) => {return JSON.stringify(e.text) !== JSON.stringify(item.text)})
+            console.log('first')
+            setValue(newData)
+        }else{
+            setValue(prevState => { console.log(prevState); return [...prevState, item] })
+        }
         // setValue(newData)
         console.log(newData, item)
     }
-    const selectedValue = <ChipList data={value} chip={props => { return <Chip size={'medium'} removable={true} {...props} /> }}></ChipList>
+    const selectedValue = <ChipList data={value} value={(i) => {setValue(i)}} chip={props => { return <Chip size={'medium'} removable={true} {...props} /> }}></ChipList>
     // console.log(value)
     return (
         <React.Fragment>

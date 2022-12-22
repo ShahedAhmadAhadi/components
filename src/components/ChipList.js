@@ -11,6 +11,7 @@ const ChipList = ({
     valueField,
     onDataChange,
     chip,
+    value,
     ...props
 }) => {
     let customData = initialData.map((item) => ({
@@ -72,6 +73,7 @@ const ChipList = ({
             return i.key !== key;
         });
         setData(removeItem);
+        value(removeItem)
     };
     return (
         <React.Fragment>
