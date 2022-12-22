@@ -1,5 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
-import Button from './Button';
+import React, { useEffect, useState } from 'react'
 import Chip from './Chip';
 import ChipList from './ChipList';
 import Input from './Input';
@@ -27,23 +26,16 @@ const MultiSelect = ({
             other.onChange(value);
         }
     });
-    useEffect(() => {
-        // console.log(value)
-    })
     const selection = (item) => {
         const newData = value.filter((e) =>  {return JSON.stringify(e.text) === JSON.stringify(item.text)} );
         if (newData.length !== 0) {
             const newData = value.filter((e) => {return JSON.stringify(e.text) !== JSON.stringify(item.text)})
-            console.log('first')
             setValue(newData)
         }else{
             setValue(prevState => { console.log(prevState); return [...prevState, item] })
         }
-        // setValue(newData)
-        console.log(newData, item)
     }
     const selectedValue = <ChipList data={value} value={(i) => {setValue(i)}} chip={props => { return <Chip size={'medium'} removable={true} {...props} /> }}></ChipList>
-    // console.log(value)
     return (
         <React.Fragment>
             <ul
@@ -66,6 +58,13 @@ const MultiSelect = ({
                             : defaultItem}
                     </span>
                     <span className="select-caret">&times;</span> */}
+                    {value.length > 0 && (
+                        <span
+                            onClick={() => setValue([])}
+                            className={` text-xl text-gray-400 px-1 self-start cursor-pointer font-bold hover:text-black order-2 icon `}>
+                            &times;
+                        </span>
+                    )}
                 </Input>
                 <div className="div">
 
@@ -76,7 +75,6 @@ const MultiSelect = ({
                         data={data}
                         textField={textField}
                         selected={value}
-                        // value={(item) => setValue(prevState => { console.log(prevState); return [...prevState, { text: item }] })}
                         value={(item) => selection({text :item})}
                     />
                 </div>
