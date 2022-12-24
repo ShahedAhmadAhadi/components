@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types'
 
 function Button({
     size,
@@ -60,6 +61,15 @@ function Button({
             </button>
         </React.Fragment>
     );
+}
+
+Button.propTypes = {
+    size: PropTypes.oneOf(['small', 'medium', 'large']),
+    icon: PropTypes.string,
+    disabled: PropTypes.bool,
+    className: PropTypes.string,
+    style: PropTypes.object,
+    fillMode: PropTypes.oneOf(['outline', 'flat', 'link', 'solid', 'default']),
 }
 
 export default Button;

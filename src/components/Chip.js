@@ -1,7 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types'
 import Button from './Button';
 
-function Chip({
+
+const Chip = ({
     text,
     value,
     removable,
@@ -21,7 +23,7 @@ function Chip({
     className,
     dataItem,
     ...other
-}) {
+}) => {
     dataItem = '';
     switch (size) {
         case 'large':
@@ -42,8 +44,8 @@ function Chip({
             );
             break;
     }
-    return (
-        <React.Fragment>
+  return (
+    <React.Fragment>
             <Button
                 style={
                     selected && selectedStyle
@@ -85,8 +87,28 @@ function Chip({
                 </span>
             </Button>
         </React.Fragment>
-    );
+  )
 }
-// &#10799;
 
-export default Chip;
+Chip.propTypes = {
+    text: PropTypes.string,
+    value: PropTypes.string,
+    removable: PropTypes.bool,
+    remove: PropTypes.func,
+    size: PropTypes.oneOf(['small', 'medium', 'large']),
+    style: PropTypes.object,
+    removeIcon: PropTypes.string,
+    selected: PropTypes.bool,
+    selectedIcon: PropTypes.string,
+    selectedStyle: PropTypes.object,
+    selectedClassName: PropTypes.string,
+    removableStyle: PropTypes.object,
+    removableClassName: PropTypes.string,
+    selectedRemovableStyle: PropTypes.object,
+    selectedRemovableClassName: PropTypes.string,
+    children: PropTypes.node,
+    className: PropTypes.string,
+    dataItem: PropTypes.string,
+}
+
+export default Chip

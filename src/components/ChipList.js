@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import Chip from './Chip';
 import { keyGenerator } from './index';
 
@@ -109,5 +110,15 @@ const ChipList = ({
         </React.Fragment>
     );
 };
+
+ChipList.propTypes = {
+    data: PropTypes.arrayOf(PropTypes.object),
+    selection: PropTypes.oneOf(['single', 'multiple', 'none']),
+    textField: PropTypes.string,
+    valueField: PropTypes.string,
+    onDataChange: PropTypes.func,
+    chip: PropTypes.node,
+    value: PropTypes.object
+}
 
 export default ChipList;

@@ -1,10 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, {useState, useEffect, useRef} from 'react'
+import propTypes from 'prop-types'
 import Button from './Button';
 import Input from './Input';
 import ListItem from './ListItem';
 
-// This is a DropDownList component activating dropdown by focus event on Button component
-function DropDownList({
+const DropDownList = ({
     /* This component need data prop if no data passed value of data would be an empty array. data prop name is changed to initialData cause 
     data is used as state for in component
     data props in component is handled is data is array of primitives or array of objects
@@ -28,7 +28,7 @@ function DropDownList({
     // selectedStyleClassName used for passing selectedStyleClassName to ListItem component
     selectedStyleClassName,
     ...other
-}) {
+}) => {
     const [data, setData] = useState(initialData);
     const [value, setValue] = useState(propValue);
     const [filter, setFilter] = useState(null);
@@ -50,11 +50,11 @@ function DropDownList({
         */
     // useEffect(() => {
     //     if (filterable) {
-            
+
     //         inputRef.current.focus()
     //     }
     // }, [filterable])
-    
+
     useEffect(() => {
         try {
             const newData = initialData.filter((e) =>
@@ -82,10 +82,11 @@ function DropDownList({
                 }}
                 className={`option-wrapper`}>
                 <Button
-                    onClick={() => {inputRef.current.focus()}}
-                    className={`select option-item ${className} ${
-                        required && !value ? 'wrong' : ''
-                    }`}
+                    onClick={() => {
+                        inputRef.current.focus();
+                    }}
+                    className={`select option-item ${className} ${required && !value ? 'wrong' : ''
+                        }`}
                     {...other}>
                     <span className="select-default-text">
                         {value
@@ -129,7 +130,20 @@ function DropDownList({
                 </div>
             </ul>
         </React.Fragment>
-    );
+    )
 }
 
-export default DropDownList;
+DropDownList.propTypes = {
+    data: propTypes.oneOfType([propTypes.arrayOf(propTypes.string), propTypes.arrayOf(propTypes.object)]),
+    defaultItem: propTypes.oneOfType([propTypes.string, propTypes.object]),
+    textField: propTypes.string,
+    value: propTypes.string,
+    filterable: propTypes.bool,
+    className: propTypes.string,
+    required: propTypes.bool,
+    childrenClassName: propTypes.string,
+    childrenStyle: propTypes.object,
+    selectedStyleClassName: propTypes.string
+}
+
+export default DropDownList

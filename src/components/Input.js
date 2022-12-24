@@ -1,13 +1,15 @@
 import React, { forwardRef, useEffect, useState } from 'react';
-import Chip from './Chip';
-import ChipList from './ChipList';
+import propTypes from 'prop-types'
 
 /* 
     Here forwardRef is used for handling the ref prop. 
     This Input component returns conditionaly for label prop if passed returns div > input, label and label not passed returns div > input
-    
 */
 const Input = forwardRef(function Input(
+    /**
+     * @typedef {Object} Input - Input Component
+     * @property 
+     */
     {
         name,
         label,
@@ -126,5 +128,22 @@ const Input = forwardRef(function Input(
         </React.Fragment>
     );
 });
+
+Input.propTypes ={
+    name: propTypes.string,
+    label: propTypes.string,
+    pattern: propTypes.string, // This should be pattern like js patterns
+    value: propTypes.string, // This is used to change state of inputValue if passed it would be default value of the Input component
+    style: propTypes.object, // passed straight as style for wrapper div tag
+    onChange: propTypes.func, // for handling onChange passed by component and already the value has onChange so if passed it will run both
+    className: propTypes.string,
+    required: propTypes.bool,
+    styleOnError: propTypes.object, // change the style when it don't match the pattern or required
+    labelStyle: propTypes.object, // style for label if have one
+    labelStyleError: propTypes.object, // changes for label when it don't match the pattern or required
+    wrapperStyle: propTypes.object, // changes styles for the div tag that is surounding the input or input, label
+    wrapperClassName: propTypes.string, // ClassName for div tag that is surounding the input or input, label
+    children: propTypes.node,
+}
 
 export default Input;

@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from 'react';
 import './App.css';
 import Button from './components/Button';
 import Chip from './components/Chip';
-import ChipL from './components/ChipL';
 import ChipList from './components/ChipList';
 import DropDownLIst from './components/DropDownList';
 import Input from './components/Input';
