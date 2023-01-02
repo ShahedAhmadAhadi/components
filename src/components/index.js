@@ -1,4 +1,8 @@
 // This functions is used for generating a key for every li element return eg: SVDT-8249, LKNA-3005. example pattern is AAAA-IIII
+/**
+ * @param 
+ * @returns 
+ */
 const keyGenerator = () => {
   let randNums = Math.round(Math.random() * 9000 + 999);
   let key = ['', '-', randNums];

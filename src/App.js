@@ -194,6 +194,7 @@ function App() {
         <ChipList data={sport}></ChipList>
       <br></br>
       <DropDownLIst selectedStyleClassName={'bg-yellow-200'} childrenClassName={'text-pink-600'} fillMode={'outline'} required={true} filterable={true} defaultItem={'Select Color ...'} textField={textField} data={data} className={'rounded-full'} onChange={(val) => setValue(val)} value={value} />
+      <DropDownLIst filterable={true} defaultItem={'Select Color ...'} textField={textField} data={data} onChange={(val) => setValue(val)} value={value} />
       <br></br>
       <MultiSelect data={sport} />
       <ChipList
