@@ -1,8 +1,9 @@
 import React from 'react'
+import GridColumn from './GridColumn'
 
-const Grid = () => {
+const Grid = ({data}) => {
   return (
-    <div>Grid</div>
+    data.map(item => <GridColumn></GridColumn>)
   )
 }
 

@@ -189,7 +189,10 @@ function App() {
           textField="name"
           valueField="name"
           removable={true}
-          style={{backgroundColor: 'white', padding: '8px'}} selectedStyle={{backgroundColor: 'black', color: 'white'}} removableStyle={{backgroundColor: 'black', color: 'white'}} selectedRemovableStyle={{backgroundColor: 'white', color: 'black'}}
+          style={{backgroundColor: 'white', padding: '8px'}}
+          selectedStyle={{backgroundColor: 'black', color: 'white'}}
+          removableStyle={{backgroundColor: 'black', color: 'white'}}
+          selectedRemovableStyle={{backgroundColor: 'white', color: 'black'}}
         />
         <ChipList data={sport}></ChipList>
       <br></br>

@@ -69,7 +69,7 @@ Button.propTypes = {
     disabled: PropTypes.bool,
     className: PropTypes.string,
     style: PropTypes.object,
-    fillMode: PropTypes.oneOf(['outline', 'flat', 'link', 'solid', 'default']),
+    fillMode: PropTypes.oneOf(['outline', 'flat', 'link', 'solid', 'default', '']),
 }
 
 export default Button;

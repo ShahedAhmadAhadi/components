@@ -112,13 +112,13 @@ const ChipList = ({
 };
 
 ChipList.propTypes = {
-    data: PropTypes.arrayOf(PropTypes.object),
+    data: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.object, PropTypes.string])),
     selection: PropTypes.oneOf(['single', 'multiple', 'none']),
     textField: PropTypes.string,
     valueField: PropTypes.string,
     onDataChange: PropTypes.func,
-    chip: PropTypes.node,
-    value: PropTypes.object
+    chip: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
+    value: PropTypes.oneOfType([PropTypes.object, PropTypes.func])
 }
 
 export default ChipList;

@@ -108,7 +108,7 @@ Chip.propTypes = {
     selectedRemovableClassName: PropTypes.string,
     children: PropTypes.node,
     className: PropTypes.string,
-    dataItem: PropTypes.string,
+    dataItem: PropTypes.object,
 }
 
 export default Chip
