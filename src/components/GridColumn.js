@@ -1,8 +1,13 @@
 import React from 'react'
+import { keyGenerator } from '.'
 
-const GridColumn = () => {
+const GridColumn = ({ field, title, data, ...props }) => {
+  console.log(data)
   return (
-    <div>GridColumn</div>
+    <React.Fragment>
+      <span>{title}</span>
+      {data.map(item => <span key={keyGenerator()}>{String(item[field]) === 'undefined' ? '&nbsp;' : String(item[field])}</span>)}
+    </React.Fragment>
   )
 }
 

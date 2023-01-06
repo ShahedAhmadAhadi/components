@@ -4,6 +4,7 @@ import Button from './components/Button';
 import Chip from './components/Chip';
 import ChipList from './components/ChipList';
 import DropDownLIst from './components/DropDownList';
+import Grid from './components/Grid';
 import Input from './components/Input';
 import MultiSelect from './components/MultiSelect';
 
@@ -43,6 +44,7 @@ function App() {
       text: "Banana",
       value: "banana",
       disabled: true,
+      id: 4
     },
     {
       text: "Kiwi",
@@ -164,6 +166,7 @@ function App() {
   };
   return (
     <div className="App">
+      <Grid data={fruits}></Grid>
       <Input ref={inp} pattern='[A-Za-z]+' className="style-on-error:bg-red-500" styleOnError={{ border: '1px solid green' }} />
       <Input label="name" pattern='[A-Za-z]+' className="text-blue-300 border-cyan-600 focus:border-yellow-500" />
       <br></br>
